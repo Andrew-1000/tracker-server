@@ -30,7 +30,7 @@ Ext.define('Traccar.Application', {
         'User',
         'Group',
         'Device',
-        'PointOfInterest'
+        'PointOfInterest',
         'Position',
         'Attribute',
         'Command',
@@ -51,7 +51,7 @@ Ext.define('Traccar.Application', {
     stores: [
         'Groups',
         'Devices',
-        'PointsOfInterest'
+        'PointsOfInterest',
         'AllGroups',
         'AllDevices',
         'AlarmTypes',

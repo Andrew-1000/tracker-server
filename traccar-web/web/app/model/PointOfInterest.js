@@ -27,13 +27,16 @@ Ext.define('Traccar.model.PointOfInterest', {
         name: 'name',
         type: 'string'
     }, {
-        name: 'lat',
-        type: 'float'
-    }, {
-        name: 'long',
-        type: 'float'
-    }, {
         name: 'phone',
         type: 'string',
-    }]
+    }, {
+        name: 'latitude',
+        type: 'float'
+    }, {
+        name: 'longitude',
+        type: 'float'
+    }, {
+        name: 'zoom',
+        type: 'int'
+    } ]
 });

@@ -26,7 +26,7 @@ Ext.define('Traccar.view.edit.PointsOfInterest', {
     ],
 
     controller: 'pointsofinterest',
-    store: 'PointsOfInterest',
+//    store: 'PointsOfInterest',
 
     tbar: {
         xtype: 'editToolbar'
@@ -42,21 +42,21 @@ Ext.define('Traccar.view.edit.PointsOfInterest', {
             minWidth: Traccar.Style.columnWidthNormal
         },
         items: [{
-            text: Strings.sharedName,
-            dataIndex: 'name',
-            filter: 'string'
+            text: Strings.sharedName
+//            dataIndex: 'name',
+//            filter: 'string'
         }, {
-            text: Strings.commandPhone,
-            dataIndex: 'phone',
-            filter: 'string'
+            text: Strings.commandPhone
+//            dataIndex: 'phone',
+//            filter: 'string'
         }, {
-            text: Strings.positionLatitude,
-            dataIndex: 'lat',
-            filter: 'float'
+            text: Strings.positionLatitude
+//            dataIndex: 'lat',
+//            filter: 'float'
         }, {
-            text: Strings.positionLongitude,
-            dataIndex: 'long',
-            filter: 'float'
+            text: Strings.positionLongitude
+//            dataIndex: 'long',
+//            filter: 'float'
         }]
     }
 });

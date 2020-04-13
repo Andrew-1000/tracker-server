@@ -27,5 +27,5 @@ Ext.define('Traccar.view.edit.PointsOfInterestController', {
 
     objectModel: 'Traccar.model.PointOfInterest',
     objectDialog: 'Traccar.view.dialog.PointOfInterest',
-    removeTitle: Strings.sharedDriver
+    removeTitle: Strings.sharedPointOfInterest
 });

@@ -249,6 +249,7 @@
     "mapShapePolygon": "Polygon",
     "mapShapeCircle": "Circle",
     "mapShapePolyline": "Polyline",
+    "mapShapePoint": "Point",
     "mapLiveRoutes": "Live Routes",
     "mapPoiLayer": "POI Layer",
     "stateTitle": "State",

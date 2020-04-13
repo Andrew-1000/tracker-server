@@ -28,5 +28,8 @@ Ext.define('Traccar.store.GeofenceTypes', {
     }, {
         key: 'LineString',
         name: Strings.mapShapePolyline
-    }]
+    },{
+        key: 'Point',
+        name: Strings.mapShapePoint
+    } ]
 });

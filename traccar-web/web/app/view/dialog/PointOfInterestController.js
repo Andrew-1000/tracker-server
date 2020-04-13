@@ -15,46 +15,47 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-Ext.define('Traccar.view.dialog.GeofenceController', {
+Ext.define('Traccar.view.dialog.PointOfInterestController', {
     extend: 'Traccar.view.dialog.BaseEditController',
-    alias: 'controller.geofence',
+    alias: 'controller.pointOfInterest',
 
     requires: [
         'Traccar.view.BaseWindow',
         'Traccar.view.map.GeofenceMap'
     ],
 
+//    config: {
+//        listen: {
+//            controller: {
+//                '*': {
+////                    savearea: 'saveArea'
+//                }
+//            }
+//        }
+//    },
     config: {
-        listen: {
-            controller: {
-                '*': {
-                    savearea: 'saveArea'
+            listen: {
+                controller: {
+                    '*': {
+                        mapstate: 'setMapState'
+                    }
                 }
             }
-        }
-    },
-
-    init: function () {
-        this.lookupReference('calendarCombo').setHidden(
-            Traccar.app.getBooleanAttributePreference('ui.disableCalendars'));
-    },
+        },
 
     saveArea: function (value) {
         this.lookupReference('areaField').setValue(value);
     },
 
-    onAreaClick: function (button) {
-        var dialog, record;
-        dialog = button.up('window').down('form');
-        record = dialog.getRecord();
-        Ext.create('Traccar.view.BaseWindow', {
-            title: Strings.sharedArea,
-            items: {
-                xtype: 'geofenceMapView',
-                area: record.get('area')
-            }
-        }).show();
-    },
+    getMapState: function () {
+            this.fireEvent('mapstaterequest');
+        },
+
+    setMapState: function (lat, lon, zoom) {
+            this.lookupReference('latitude').setValue(lat);
+            this.lookupReference('longitude').setValue(lon);
+            this.lookupReference('zoom').setValue(zoom);
+        },
     onPointClick: function (button) {
             var dialog, record;
             dialog = button.up('window').down('form');

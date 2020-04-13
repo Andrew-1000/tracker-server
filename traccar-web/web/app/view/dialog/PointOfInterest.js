@@ -20,8 +20,13 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
     extend: 'Traccar.view.dialog.BaseEdit',
 
     requires: [
-        'Traccar.view.UnescapedTextField'
+        'Traccar.view.UnescapedTextField',
+        'Traccar.view.dialog.PointOfInterestController',
+        'Traccar.view.ClearableComboBox'
     ],
+    controller: 'pointOfInterest',
+
+
 
     title: Strings.sharedPointOfInterest,
 
@@ -36,21 +41,62 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
                 fieldLabel: Strings.sharedName,
                 allowBlank: false
             }, {
+               xtype: 'clearableComboBox',
+               name: 'geofence',
+               fieldLabel: Strings.sharedGeofence,
+               store: 'Geofences',
+               queryMode: 'local',
+               displayField: 'name',
+               valueField: 'id'
+            }, {
                 xtype: 'unescapedTextField',
                 name: 'phone',
                 fieldLabel: Strings.sharedPhone,
                 allowBlank: false
             }, {
-                xtype: 'unescapedTextField',
-                name: 'lat',
+                xtype: 'numberfield',
+                reference: 'latitude',
+                name: 'latitude',
                 fieldLabel: Strings.positionLatitude,
-                allowBlank: false
+                decimalPrecision: Traccar.Style.coordinatePrecision
             }, {
-                xtype: 'unescapedTextField',
-                name: 'long',
+                xtype: 'numberfield',
+                reference: 'longitude',
+                name: 'longitude',
                 fieldLabel: Strings.positionLongitude,
-                allowBlank: false
+                decimalPrecision: Traccar.Style.coordinatePrecision
+            }, {
+                xtype: 'numberfield',
+                reference: 'zoom',
+                name: 'zoom',
+                fieldLabel: Strings.serverZoom
             }]
         }]
-    }
+    },
+
+     buttons: [{
+           text: Strings.mapShapePoint,
+           glyph: 'xf21d@FontAwesome',
+           handler: 'onPointClick'
+        }, {
+            glyph: 'xf041@FontAwesome',
+            minWidth: 0,
+            handler: 'getMapState',
+            tooltip: Strings.sharedGetMapState,
+            tooltipType: 'title'
+        }, {
+            xtype: 'tbfill'
+        }, {
+            glyph: 'xf00c@FontAwesome',
+            tooltip: Strings.sharedSave,
+            tooltipType: 'title',
+            minWidth: 0,
+            handler: 'onSaveClick'
+        }, {
+            glyph: 'xf00d@FontAwesome',
+            tooltip: Strings.sharedCancel,
+            tooltipType: 'title',
+            minWidth: 0,
+            handler: 'closeView'
+        }]
 });
