@@ -98,5 +98,10 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
             tooltipType: 'title',
             minWidth: 0,
             handler: 'closeView'
+        },{
+            xtype: 'hiddenfield',
+            name: 'area',
+            allowBlank: false,
+            reference: 'areaField'
         }]
 });

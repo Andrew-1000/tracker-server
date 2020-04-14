@@ -23,21 +23,12 @@ Ext.define('Traccar.view.dialog.PointOfInterestController', {
         'Traccar.view.BaseWindow',
         'Traccar.view.map.GeofenceMap'
     ],
-
-//    config: {
-//        listen: {
-//            controller: {
-//                '*': {
-////                    savearea: 'saveArea'
-//                }
-//            }
-//        }
-//    },
     config: {
             listen: {
                 controller: {
                     '*': {
-                        mapstate: 'setMapState'
+                        mapstate: 'setMapState',
+                        savearea: 'saveArea'
                     }
                 }
             }
