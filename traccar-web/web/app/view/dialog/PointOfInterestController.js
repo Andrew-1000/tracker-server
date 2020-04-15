@@ -38,15 +38,7 @@ Ext.define('Traccar.view.dialog.PointOfInterestController', {
         this.lookupReference('areaField').setValue(value);
     },
 
-//    getMapState: function () {
-//            this.fireEvent('mapstaterequest');
-//        },
-//
-//    setMapState: function (lat, lon, zoom) {
-//            this.lookupReference('latitude').setValue(lat);
-//            this.lookupReference('longitude').setValue(lon);
-//            this.lookupReference('zoom').setValue(zoom);
-//        },
+
     onPointClick: function (button) {
             var dialog, record;
             dialog = button.up('window').down('form');

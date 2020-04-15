@@ -26,8 +26,6 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
     ],
     controller: 'pointOfInterest',
 
-
-
     title: Strings.sharedPointOfInterest,
 
     items: {
@@ -66,16 +64,12 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
                 fieldLabel: Strings.positionLongitude,
                 decimalPrecision: Traccar.Style.coordinatePrecision
             }, {
-                xtype: 'numberfield',
-                reference: 'zoom',
-                name: 'zoom',
-                fieldLabel: Strings.serverZoom
-            }, {
-               xtype: 'hiddenfield',
+               xtype: 'unescapedTextField',
                name: 'area',
                allowBlank: false,
-               reference: 'areaField'
-        }]
+               reference: 'areaField',
+               fieldLabel: Strings.sharedCoordinates
+            }]
         }]
     },
 
@@ -83,12 +77,6 @@ Ext.define('Traccar.view.dialog.PointOfInterest', {
            text: Strings.mapShapePoint,
            glyph: 'xf21d@FontAwesome',
            handler: 'onPointClick'
-        }, {
-            glyph: 'xf041@FontAwesome',
-            minWidth: 0,
-            handler: 'getMapState',
-            tooltip: Strings.sharedGetMapState,
-            tooltipType: 'title'
         }, {
             xtype: 'tbfill'
         }, {

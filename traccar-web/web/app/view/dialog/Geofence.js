@@ -36,7 +36,13 @@ Ext.define('Traccar.view.dialog.Geofence', {
                 xtype: 'unescapedTextField',
                 name: 'name',
                 fieldLabel: Strings.sharedName
-            }]
+            }, {
+                xtype: 'unescapedTextField',
+                name: 'area',
+                allowBlank: false,
+                reference: 'areaField',
+                fieldLabel: Strings.sharedCoordinates
+           }]
         }, {
             xtype: 'fieldset',
             title: Strings.sharedExtra,
@@ -55,12 +61,7 @@ Ext.define('Traccar.view.dialog.Geofence', {
                 displayField: 'name',
                 valueField: 'id',
                 fieldLabel: Strings.sharedCalendar
-            }, {
-                xtype: 'hiddenfield',
-                name: 'area',
-                allowBlank: false,
-                reference: 'areaField'
-            }]
+            } ]
         }]
     },
 
