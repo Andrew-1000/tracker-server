@@ -19,18 +19,17 @@ import java.text.ParseException;
 
 import org.traccar.Context;
 import org.traccar.database.QueryIgnore;
-import org.traccar.geofence.GeofenceCircle;
-import org.traccar.geofence.GeofenceGeometry;
-import org.traccar.geofence.GeofencePolygon;
-import org.traccar.geofence.GeofencePolyline;
+import org.traccar.geofence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Geofence extends ScheduledModel {
+public class
+Geofence extends ScheduledModel {
 
     public static final String TYPE_GEOFENCE_CILCLE = "geofenceCircle";
     public static final String TYPE_GEOFENCE_POLYGON = "geofencePolygon";
     public static final String TYPE_GEOFENCE_POLYLINE = "geofencePolyline";
+    public static final String TYPE_GEOFENCE_POINT = "geofencePoint";
 
     private String name;
 
@@ -68,7 +67,9 @@ public class Geofence extends ScheduledModel {
             final double distance = getDouble("polylineDistance");
             geometry = new GeofencePolyline(area, distance > 0 ? distance
                     : Context.getConfig().getDouble("geofence.polylineDistance", 25));
-        } else {
+        } else  if (area.startsWith("POINT")){
+            geometry = new GeofencePoint(area);
+        }else {
             throw new ParseException("Unknown geometry type", 0);
         }
 

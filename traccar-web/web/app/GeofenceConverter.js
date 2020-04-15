@@ -14,13 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 Ext.define('Traccar.GeofenceConverter', {
     singleton: true,
-
     wktToGeometry: function (mapView, wkt) {
         var geometry, projection, resolutionAtEquator, pointResolution, resolutionFactor,
-            points = [], center, radius, content, i, lat, lon, coordinates;
+            points = [], center, radius, content, i, lat, lon, coordinates,
+            point = [], content, lat, lon;
         if (wkt.lastIndexOf('POLYGON', 0) === 0) {
             content = wkt.match(/\([^()]+\)/);
             if (content !== null) {
@@ -63,10 +62,34 @@ Ext.define('Traccar.GeofenceConverter', {
                     geometry = new ol.geom.LineString(points);
                 }
             }
-        }
+        } //else if(wkt.lastIndexOf('POINT', 0) === 0){
+//            content = wkt.match(/\([^()]+\)/);
+//            if(content !== null){
+//                coordinates = content[0].match(/-?\d+\.?\d*/g);
+//                if(coordinates !== null){
+//                    projection = mapView.getProjection();
+//                    lon = Number(coordinates[0]);
+//                    lat = Number(coordinates[1]);
+//                    points.push(ol.proj.transform([lon, lat], 'EPSG:4326', projection));
+//                    geometry= new ol.geom.Point(point);
+//                }
+//            }
+//        }
+        else if(wkt.lastIndexOf('POINT', 0) === 0){
+                    content = wkt.match(/\([^()]+\)/);
+                    if(content !== null){
+                        coordinates = content[0].match(/-?\d+\.?\d*/g);
+                        if(coordinates !== null){
+                            projection = mapView.getProjection();
+                            lon = Number(coordinates[0]);
+                            lat = Number(coordinates[1]);
+//                            geometry= new ol.geom.Point([lon, lat]).transform('EPSG:4326', projection);
+                             geometry =  new ol.geom.Point(ol.proj.fromLonLat([lon, lat]))
+                        }
+                    }
+                }
         return geometry;
     },
-
     geometryToWkt: function (projection, geometry) {
         var result, i, center, radius, edgeCoordinate, groundRadius, points;
         if (geometry instanceof ol.geom.Circle) {
@@ -95,6 +118,12 @@ Ext.define('Traccar.GeofenceConverter', {
                 result += points[i][1] + ' ' + points[i][0] + ', ';
             }
             result = result.substring(0, result.length - 2) + ')';
+        }else if(geometry instanceof ol.geom.Point){
+            geometry.transform(projection, 'EPSG:4326');
+            points = geometry.getCoordinates();
+            result = 'POINT (';
+            result += points[0] +' ' + points[1] +'';
+            result += ')';
         }
         return result;
     }

@@ -51,11 +51,11 @@ Ext.define('Traccar.view.edit.PointsOfInterest', {
 //            filter: 'string'
         }, {
             text: Strings.positionLatitude
-//            dataIndex: 'lat',
+//            dataIndex: 'latitude',
 //            filter: 'float'
         }, {
             text: Strings.positionLongitude
-//            dataIndex: 'long',
+//            dataIndex: 'longitude',
 //            filter: 'float'
         }]
     }
